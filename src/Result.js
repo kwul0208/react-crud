@@ -1,6 +1,8 @@
 import React from "react";
 
-export default function Result() {
+export default function Result({ data }) {
+    console.log(data)
+    let n = 0;
     return (
         <table class="table table-striped">
             <thead>
@@ -11,28 +13,28 @@ export default function Result() {
                     <th scope="col">ation</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Tangerang, Indonesia</td>
-                    <td>
-                        <span class="badge bg-primary m-2">Primary</span>
-                        <span class="badge bg-danger ">Danger</span>
+            {
 
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Jawa Tengah, Indonesia</td>
-                    <td>
-                        <span class="badge bg-primary m-2">Primary</span>
-                        <span class="badge bg-danger ">Danger</span>
+                data.map(d => {
+                    n++
 
-                    </td>
-                </tr>
-            </tbody>
+                    return (
+                        <tbody>
+                            <tr>
+                                <th scope="row">{n}</th>
+                                <td>{d.name}</td>
+                                <td>{d.address}</td>
+                                <td>
+                                    <span class="badge bg-primary m-2">Primary</span>
+                                    <span class="badge bg-danger ">Danger</span>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    )
+                })
+            }
+
         </table>
     )
 }

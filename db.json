@@ -1,0 +1,59 @@
+{
+  "posts": [
+    {
+      "id": 12,
+      "name": "Andi Nugroho",
+      "address": "Tegal"
+    },
+    {
+      "id": 13,
+      "name": "Susi Ana",
+      "address": "Banten"
+    },
+    {
+      "id": 13,
+      "name": "Susi Ana",
+      "address": "Jakarta"
+    },
+    {
+      "id": "e4e138bc71c",
+      "name": "asdaasdasdas",
+      "address": "asdaasdasdasdasd"
+    },
+    {
+      "id": "d28680f7d82",
+      "name": "asdasd",
+      "address": "asdasda"
+    },
+    {
+      "id": "28680f7d824",
+      "name": "asdasd",
+      "address": "asdasda"
+    },
+    {
+      "id": "8680f7d824b",
+      "name": "ahmad",
+      "address": "tangerang"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "name": "sdads",
+      "telp": "sada"
+    },
+    {
+      "id": 1,
+      "name": "sdads",
+      "telp": "sada"
+    },
+    {
+      "id": 1,
+      "name": "sdads",
+      "telp": "sada"
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
