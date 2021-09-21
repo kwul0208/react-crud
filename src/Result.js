@@ -1,7 +1,6 @@
 import React from "react";
 
-export default function Result({ data }) {
-    console.log(data)
+export default function Result({ data, update, hapus }) {
     let n = 0;
     return (
         <table class="table table-striped">
@@ -25,8 +24,9 @@ export default function Result({ data }) {
                                 <td>{d.name}</td>
                                 <td>{d.address}</td>
                                 <td>
-                                    <span class="badge bg-primary m-2">Primary</span>
-                                    <span class="badge bg-danger ">Danger</span>
+
+                                    <button type="button" class="btn btn-warning " onClick={() => update(d.id)}>Edit</button>
+                                    <button type="button" class="btn btn-danger ms-2" onClick={() => hapus(d.id)}>Hapus</button>
 
                                 </td>
                             </tr>

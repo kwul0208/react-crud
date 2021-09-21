@@ -21,7 +21,12 @@ function App() {
   const [formData, setFormData] = useState({
     name: '',
     address: ''
-  })
+  });
+
+  const [isUpdate, setIsUpdate] = useState({
+    id: null,
+    status: false
+  });
 
 
   useEffect(() => {
@@ -41,30 +46,74 @@ function App() {
     e.preventDefault();
     let newData = [...datas];
 
-    let data = {
-      id: uid(),
-      name: formData.name,
-      address: formData.address
+    if (isUpdate.status) {
+      newData.forEach(nData => {
+        if (nData.id === isUpdate.id) {
+          nData.name = formData.name;
+          nData.address = formData.address
+        }
+      });
+      let data = {
+        id: isUpdate.id,
+        name: formData.name,
+        address: formData.address
+      };
+      setDatas(newData);
+      axios.put(`http://localhost:3004/posts/${isUpdate.id}`, data)
+
+    } else {
+      let data = {
+        id: uid(),
+        name: formData.name,
+        address: formData.address
+      }
+
+      newData.push(data);
+      setDatas(newData);
+      axios.post('http://localhost:3004/posts', data)
+        .then(res => {
+          alert("success")
+        });
     }
 
-    newData.push(data);
-    setDatas(newData);
-    axios.post('http://localhost:3004/posts', data)
-      .then(res => {
-        alert("success")
-      });
 
     setFormData({
       name: '',
       address: ''
+    });
+
+    setIsUpdate({
+      id: null,
+      status: false
     })
-
-
-
 
   }
 
-  console.log(formData)
+
+  function handleUpdate(id) {
+    let data = [...datas];
+    let foundData = data.find((datas) => datas.id === id);
+
+    setFormData({
+      name: foundData.name,
+      address: foundData.address
+    });
+
+    setIsUpdate({
+      id: id,
+      status: true
+    });
+
+  }
+
+
+  function handleDelete(id) {
+    let newData = [...datas];
+    let filterData = newData.filter(data => data.id !== id);
+    axios.delete(`http://localhost:3004/posts/${id}`);
+    setDatas(filterData);
+  }
+
   return (
     <div className="app">
       {/* input */}
@@ -86,7 +135,7 @@ function App() {
       {/* show relust */}
       <div class="card w-50 mt-5">
         <h2 className="text-center">Result</h2>
-        <Result data={datas} />
+        <Result data={datas} update={handleUpdate} hapus={handleDelete} />
       </div>
     </div>
   );
